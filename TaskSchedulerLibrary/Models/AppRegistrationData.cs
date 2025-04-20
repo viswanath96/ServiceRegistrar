@@ -31,4 +31,12 @@ namespace ServiceRegistrar.Models
         TimeBoundry Interval { get; set; }
         bool StopAtDurationEnd { get; set; }
     }
+
+    public class Action
+    {
+        public string ProgramOrScript { get; set; }
+        public string Arguements { get; set; }
+        public string StartIn { get; set; }
+
+    }
 }
