@@ -12,6 +12,10 @@ namespace ServiceRegistrar.Models
         public string ApplicationName { get; set; }
         public string ExecutablePath { get; set; }
         public string Description { get; set; }
+
+        Trigger Trigger { get; set; }
+        Repetiton Repetiton { get; set; }
+
     }
 
     /// <summary>
