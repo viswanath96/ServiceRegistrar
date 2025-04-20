@@ -13,8 +13,9 @@ namespace ServiceRegistrar.Models
         public string ExecutablePath { get; set; }
         public string Description { get; set; }
 
-        Trigger Trigger { get; set; }
-        Repetiton Repetiton { get; set; }
+        public Trigger Trigger { get; set; }
+        public Repetiton Repetiton { get; set; }
+        public Action Action { get; set; }
 
     }
 
@@ -23,19 +24,19 @@ namespace ServiceRegistrar.Models
     /// </summary>
     public class Trigger
     {
-        TimeBoundry StartTimeBoundry { get; set; }
+        public TimeBoundry StartTimeBoundry { get; set; }
     }
 
     public class Repetiton
     {
-        TimeBoundry Interval { get; set; }
-        bool StopAtDurationEnd { get; set; }
+        public TimeBoundry Interval { get; set; }
+        public bool StopAtDurationEnd { get; set; }
     }
 
     public class Action
     {
         public string ProgramOrScript { get; set; }
-        public string Arguements { get; set; }
+        public string Arguments { get; set; }
         public string StartIn { get; set; }
 
     }

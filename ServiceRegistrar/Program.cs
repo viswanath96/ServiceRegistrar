@@ -13,6 +13,7 @@ class Program
             .Build();
 
         // Bind the ScheduledTasks section to a list of AppRegistrationData
+        var applications = configuration.GetSection("Applications");
         var appRegistrationData = configuration.GetSection("Applications").Get<List<AppRegistrationData>>();
 
         // Iterate through each task and register it
