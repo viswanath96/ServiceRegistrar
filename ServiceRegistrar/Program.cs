@@ -35,13 +35,13 @@ class Program
             // Set the trigger to run at 5 minutes past every hour
             var trigger = new DailyTrigger
             {
-                StartBoundary = DateTime.Today.AddHours(DateTime.Now.Hour).AddMinutes(5),
-                Repetition = new RepetitionPattern(TimeSpan.FromHours(1), TimeSpan.Zero)
+                StartBoundary = DateTime.Today.AddHours(DateTime.Now.Hour).AddMinutes(appRegistrationData.Trigger.StartTimeBoundry.Minutes),
+                Repetition = new RepetitionPattern(TimeSpan.FromHours(appRegistrationData.Repetiton.Interval.Hours), TimeSpan.Zero)
             };
             taskDefinition.Triggers.Add(trigger);
 
             // Set the action to start the executable
-            taskDefinition.Actions.Add(new ExecAction(appRegistrationData.ExecutablePath, null, null));
+            taskDefinition.Actions.Add(new ExecAction(appRegistrationData.ExecutablePath, appRegistrationData.Action.Arguments, appRegistrationData.Action.StartIn));
 
             // Register the task
             taskService.RootFolder.RegisterTaskDefinition(appRegistrationData.ApplicationName, taskDefinition);
