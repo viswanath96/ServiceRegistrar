@@ -9,13 +9,13 @@ namespace ServiceRegistrar.Models
 {
     public class AppRegistrationData
     {
-        public string ApplicationName { get; set; }
-        public string ExecutablePath { get; set; }
-        public string Description { get; set; }
+        public string? ApplicationName { get; set; }
+        public string? ExecutablePath { get; set; }
+        public string? Description { get; set; }
 
-        public Trigger Trigger { get; set; }
-        public Repetiton Repetiton { get; set; }
-        public Action Action { get; set; }
+        public Trigger? Trigger { get; set; }
+        public Repetiton? Repetiton { get; set; }
+        public Action? Action { get; set; }
 
     }
 
@@ -24,20 +24,20 @@ namespace ServiceRegistrar.Models
     /// </summary>
     public class Trigger
     {
-        public TimeBoundry StartTimeBoundry { get; set; }
+        public TimeBoundry? StartTimeBoundry { get; set; }
     }
 
     public class Repetiton
     {
-        public TimeBoundry Interval { get; set; }
-        public bool StopAtDurationEnd { get; set; }
+        public TimeBoundry? Interval { get; set; }
+        public bool? StopAtDurationEnd { get; set; }
     }
 
     public class Action
     {
-        public string ProgramOrScript { get; set; }
-        public string Arguments { get; set; }
-        public string StartIn { get; set; }
+        public string? ProgramOrScript { get; set; }
+        public string? Arguments { get; set; }
+        public string? StartIn { get; set; }
 
     }
 }
