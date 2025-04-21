@@ -14,23 +14,23 @@ class Program
 
         // Bind the ScheduledTasks section to a list of AppRegistrationData
         var applications = configuration.GetSection("Applications");
-        var appRegistrationData = configuration.GetSection("Applications").Get<List<AppRegistrationData>>();
+        var appRegistrationDataList = configuration.GetSection("Applications").Get<List<AppRegistrationData>>();
 
         // Iterate through each task and register it
-        foreach (var task in appRegistrationData)
+        foreach (var appRegistrationData in appRegistrationDataList)
         {
-            RegisterScheduledTask(task.ApplicationName, task.ExecutablePath, task.Description);
-            Console.WriteLine($"Scheduled task '{task.ApplicationName}' registered successfully.");
+            RegisterScheduledTask(appRegistrationData);
+            Console.WriteLine($"Scheduled task '{appRegistrationData.ApplicationName}' registered successfully.");
         }
     }
 
-    private static void RegisterScheduledTask(string taskName, string executablePath, string description)
+    private static void RegisterScheduledTask(AppRegistrationData appRegistrationData)
     {
         using (TaskService taskService = new TaskService())
         {
             // Create a new task definition
             TaskDefinition taskDefinition = taskService.NewTask();
-            taskDefinition.RegistrationInfo.Description = description;
+            taskDefinition.RegistrationInfo.Description = appRegistrationData.Description;
 
             // Set the trigger to run at 5 minutes past every hour
             var trigger = new DailyTrigger
@@ -41,10 +41,10 @@ class Program
             taskDefinition.Triggers.Add(trigger);
 
             // Set the action to start the executable
-            taskDefinition.Actions.Add(new ExecAction(executablePath, null, null));
+            taskDefinition.Actions.Add(new ExecAction(appRegistrationData.ExecutablePath, null, null));
 
             // Register the task
-            taskService.RootFolder.RegisterTaskDefinition(taskName, taskDefinition);
+            taskService.RootFolder.RegisterTaskDefinition(appRegistrationData.ApplicationName, taskDefinition);
         }
     }
 }
